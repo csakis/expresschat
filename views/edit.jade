@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 Edit chat room!
+
+  form(method="post")
+    fieldset.form-group
+      label(for="Name") Name:
+      input.form-control(name="name" type="text" placeholder="Enter a name" value ="#{room.name}")
+      small.text-muted Give your chat room a meaningful name
+    button.btn.btn-primary(type="submit") Save chat room
+    a.btn.btn-warning(href="/admin/rooms") Cancel
+
+
