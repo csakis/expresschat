@@ -1,16 +1,24 @@
-/**
- * Created by csaba on 7/4/17.
- */
-var express = require('express');
+var express = require("express");
 var app = express();
+var rooms = require("./data/rooms.json");
+
+app.set("views", "./views");
+app.set('view engine', 'jade');
+
 app.use(express.static("public"));
 app.use(express.static("node_modules/bootstrap/dist"));
 
-app.get("/", function (req, res) {
-    res.send("Hello world");
+app.get('/', function (req, res) {
+    res.render("index", { title: "Home"});
 });
-app.listen(3000, function () {
-    console.log("server started on port 3000.");
-});
-// app.use();
 
+app.get('/admin/rooms', function (req, res) {
+    res.render("rooms", {
+        title: "Admin Rooms",
+        rooms: rooms
+    });
+});
+
+app.listen(3000, function () {
+    console.log('Chat app listening on port 3000!');
+});
